@@ -1,22 +1,39 @@
-const express = require("express");
+const express = require('express');
+const bodyParser = require('body-parser');
+require('dotenv').config()
 
-const PORT = process.env.PORT || 3001;
+const taskController = require('./controller/task.controller')
+
+
 
 const app = express();
+const port = process.env.PORT || 3001;
 
-// Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(bodyParser.json());
 
-// Handle GET requests to /api route
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
+app.get('/api/tasks', (req, res) => {
+    taskController.getTasks().then(data => res.json(data));
 });
 
-// All other GET requests not handled before will return our React app
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+app.post('/api/task', (req, res) => {
+    console.log(req.body);
+    taskController.createTask(req.body.task).then(data => res.json(data));
 });
 
-app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
+app.put('/api/task', (req, res) => {
+    taskController.updateTask(req.body.task).then(data => res.json(data));
 });
+
+app.delete('/api/task/:id', (req, res) => {
+    taskController.deleteTask(req.params.id).then(data => res.json(data));
+});
+
+app.get('/', (req, res) => {
+    res.send(`<h1>API Works !!!</h1>`)
+});
+
+
+
+app.listen(port, () => {
+    console.log(`Server listening on the port  ${port}`);
+})
