@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "porschia",
+    "password": null,
+    "database": "ponekedrag",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": 5432
+  }
+}

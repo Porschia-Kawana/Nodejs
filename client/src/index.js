@@ -1,14 +1,36 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from "react-router-dom";
+// import { ApolloProvider } from '@apollo/client';
+
 import reportWebVitals from './reportWebVitals';
+import App from './App';
+import Home from "./pages/Home/Home";
+import Account from "./pages/Account/Account";
+
+import "./index.scss";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        {/* <ApolloProvider client={client}> */}
+        <BrowserRouter>
+            <App>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/events" />
+                    <Route path="/performers" />
+                    <Route path="/login" element={<Account />} />
+                </Routes>
+            </App>
+        </BrowserRouter>
+        {/* </ApolloProvider> */}
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
