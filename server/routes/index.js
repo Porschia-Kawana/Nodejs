@@ -10,8 +10,8 @@ module.exports = (app) => {
         })
     })
 
-    app.get('/api/users', userController.getAllUsers);
-    app.post("/api/users/create", userController.create);
+    app.get(`/api/user/:userId`, userController.getUser);
+    app.post("/api/user/create", userController.create);
 
     app.get('/api/events', eventController.getAllEvents);
     app.get('/api/performers', performerController.getAllPerformers);

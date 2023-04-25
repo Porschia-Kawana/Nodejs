@@ -1,17 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
     let User = sequelize.define('User', {
-        username: { type: DataTypes.STRING, allowNull: false },
-        hash: { type: DataTypes.STRING, allowNull: false },
-        name: { type: DataTypes.STRING, allowNull: false },
+        id: { type: DataTypes.STRING, primaryKey: true },
+        username: { type: DataTypes.STRING },
+        first_name: { type: DataTypes.STRING },
+        last_name: { type: DataTypes.STRING },
         email: {
             type: DataTypes.STRING,
             validate: {
                 isEmail: true,
             },
             allowNull: false,
-        },
-        created_at: { type: DataTypes.DATE },
-        updated_at: { type: DataTypes.DATE },
+        }
     }, {
         timestamps: false
     });
