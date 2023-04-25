@@ -1,0 +1,14 @@
+.button {
+    &.login {
+        font-family: "Lucida Console", "Courier New", monospace;
+        border: unset;
+        background-color: white;
+        width: auto;
+        height: auto;
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}

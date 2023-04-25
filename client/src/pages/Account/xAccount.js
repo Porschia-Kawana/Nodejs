@@ -1,7 +1,7 @@
 import React from "react";
 import "./Account.scss";
 
-function Account() {
+function xAccount() {
     const [toggle, setToggle] = React.useState(false);
     const [signUp, setSignUp] = React.useState({
         username: "",
@@ -110,4 +110,4 @@ function Account() {
     );
 }
 
-export default Account;
+export default xAccount;

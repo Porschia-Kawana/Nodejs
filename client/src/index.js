@@ -3,33 +3,24 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
     BrowserRouter,
-    Routes,
-    Route,
 } from "react-router-dom";
-// import { ApolloProvider } from '@apollo/client';
 
+
+import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
-import Home from "./pages/Home/Home";
-import Account from "./pages/Account/Account";
+
 
 import "./index.scss";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        {/* <ApolloProvider client={client}> */}
         <BrowserRouter>
-            <App>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/events" />
-                    <Route path="/performers" />
-                    <Route path="/login" element={<Account />} />
-                </Routes>
-            </App>
+            <Auth0ProviderWithHistory>
+                <App />
+            </Auth0ProviderWithHistory>
         </BrowserRouter>
-        {/* </ApolloProvider> */}
     </React.StrictMode>
 );
 

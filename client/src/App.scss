@@ -70,6 +70,10 @@
             background-color: #bce1ea;
           }
         }
+
+        .login {
+          display: flex;
+        }
       }
     }
   }
@@ -81,14 +85,16 @@
       }
 
       .navigation {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+
         .title {
           width: auto;
           margin: 0;
         }
 
         .nav-menu {
-          margin: 0;
-          margin-left: 20px;
+          margin: auto;
         }
       }
     }
