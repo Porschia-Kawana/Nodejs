@@ -1,0 +1,40 @@
+.navigation {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+    align-items: center;
+    background-color: white;
+    justify-content: space-between;
+    padding: 0 10%;
+    box-sizing: border-box;
+
+    &__title {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__menu {
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+
+        &__item {
+            text-align: center;
+            padding: 5px 10px;
+        }
+    }
+}
+
+@media screen and (min-width: 950px) {
+    .navigation {
+        flex-direction: row;
+
+        &__menu {
+            margin-bottom: 0px;
+        }
+    }
+}

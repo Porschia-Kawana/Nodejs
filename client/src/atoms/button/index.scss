@@ -1,0 +1,56 @@
+.button {
+    cursor: pointer;
+
+    &.text {
+        border: unset;
+        background-color: white;
+        width: auto;
+        height: auto;
+        &:hover {
+            button {
+                text-decoration: underline;
+            }
+        }
+
+        &.disabled {
+            background-color: #e9f5f8;
+            opacity: 0.7;
+            cursor: default;
+        }
+    }
+
+    &.rounded {
+        background-color: #bce1ea;
+        border-radius: 25px;
+        text-align: center;
+        padding: 10px;
+        box-sizing: border-box;
+        width: 100%;
+
+        &:hover {
+            background-color: #e9f5f8;
+        }
+
+        &.disabled {
+            background-color: #e9f5f8;
+            opacity: 0.7;
+            cursor: default;
+        }
+    }
+
+    button {
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        font-size: 18px;
+        font-family: "Lucida Console", "Courier New", monospace;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:disabled {
+            cursor: default;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.number {
+    width: 100%;
+    height: 36px;
+    border: 1px solid black;
+    border-radius: 4px;
+    display: flex;
+
+    &__required {
+        color: #a50203;
+        font-weight: bolder;
+    }
+
+    input {
+        height: 100%;
+        width: 100%;
+        padding: 10px 5px;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        font-size: 14px;
+    }
+}

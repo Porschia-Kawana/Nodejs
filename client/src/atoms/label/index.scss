@@ -1,0 +1,24 @@
+.Label {
+    background-color: white;
+    font-size: 14px;
+    position: absolute;
+    padding: 3px;
+
+    &--input,
+    &--date,
+    &--time,
+    &--number {
+        bottom: 26px;
+        left: 6px;
+    }
+
+    &--textarea {
+        bottom: 117px;
+        left: 6px;
+    }
+
+    &--date,
+    &--time {
+        z-index: 9;
+    }
+}
