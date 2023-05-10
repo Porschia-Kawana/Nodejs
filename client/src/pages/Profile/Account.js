@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Image, Video, Transformation, CloudinaryContext } from 'cloudinary-react';
 
 import CreateEvent from "../Events/CreateEvent";
 import CreatePerformer from "../Performers/CreatePerformer";
@@ -6,10 +7,37 @@ import CreatePerformer from "../Performers/CreatePerformer";
 import Button from '../../atoms/button'
 
 import './Profile.scss';
+import ImageDisplay from "../../atoms/image";
+import Card from "../../molecules/cards";
 
 function Account(props) {
     const [showEventsModal, setShowEventsModal] = useState(false);
     const [showPersonasModal, setShowPersonasModal] = useState(false);
+
+    const [events, setEvents] = useState([])
+
+    useEffect(() => {
+        fetch(`api/event/${props.user.sub}`)
+            .then((res) => {
+                return res.text();
+            })
+            .then((res) => {
+                const response = JSON.parse(res)
+                const events = response.map((event) => {
+                    return {
+                        title: event.title,
+                        description: event.description,
+                        imageId: event.image,
+                        details: [event.venue, event.city]
+                    }
+                })
+                console.log(events)
+                setEvents(events)
+            })
+            .catch((error) => {
+                console.log('Request failed', error)
+            });
+    }, [])
 
     return (
         <div className="Profile">
@@ -25,6 +53,11 @@ function Account(props) {
                     <h2>Events</h2>
                     <div className="button">
                         <Button onClick={() => setShowEventsModal(true)} name="Create an Event" />
+                    </div>
+                    <div>
+                        {events && events.map((event) => (
+                            <Card data={event} />
+                        ))}
                     </div>
                 </article>
             </section>

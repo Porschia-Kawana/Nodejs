@@ -10,17 +10,15 @@ module.exports = (sequelize, DataTypes) => {
                 isEmail: true,
             },
             allowNull: false,
-        }
+        },
+        phone: { type: DataTypes.STRING },
     }, {
         timestamps: false
     });
 
-    User.associate = ({ Event, Performer }) => {
+    User.associate = ({ Event }) => {
         User.hasMany(Event, {
             foreignKey: "created_by",
-        });
-        User.hasMany(Performer, {
-            foreignKey: "user_id",
         });
     }
     return User;

@@ -24,6 +24,7 @@ module.exports = {
                 username: req.body.username,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
+                phone: req.body.phone,
             })
             res.status(201).send(userCollection)
         } catch (e) {
@@ -37,6 +38,7 @@ module.exports = {
                 email: req.body.email,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
+                phone: req.body.phone,
             }, {
                 where: {
                     id: req.params.userId

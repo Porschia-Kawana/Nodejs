@@ -1,23 +1,16 @@
 import React, { useState } from "react";
+import { useAuth0 } from '@auth0/auth0-react';
 
 import Form from "../../templates/form";
 import Modal from "../../templates/modal";
 import Input from "../../molecules/InputWithLabel";
 
 function CreateEvent(props) {
+    const { user } = useAuth0();
+
     const [data, setData] = useState({
-        title: "",
-        description: "",
-        venue: "",
-        address: "",
-        city: "",
-        country: "",
-        url: "",
-        facebook_url: "",
-        instagram_url: "",
-        price: "",
-        date: new Date(),
-        time: "",
+        datetime: new Date(),
+        created_by: user.sub
     })
 
     const handleInputChange = (input, value) => {
@@ -27,15 +20,40 @@ function CreateEvent(props) {
     }
 
     const saveEvent = () => {
-        console.log(data)
+        const formData = new FormData()
+        formData.append("title", data.title);
+        formData.append("description", data.description);
+        formData.append("venue", data.venue);
+        formData.append("address", data.address);
+        formData.append("city", data.city);
+        formData.append("url", data.url);
+        formData.append("facebook_url", data.facebook_url);
+        formData.append("instagram_url", data.instagram_url);
+        formData.append("price", data.price);
+        formData.append("datetime", data.datetime);
+        formData.append("created_by", data.created_by);
+        formData.append("image", data.image);
+
+        fetch("/api/event/create", {
+            method: 'POST',
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
     }
 
     return (
-        <Modal show={props.show} onClose={props.onClose} title="Create an Event">
+        <Modal show={props.show} onClose={props.onClose} title="Create an Event" onSave={saveEvent}>
             <div>
                 <Form>
-                    <Input required={false} value={data.title} label={`Event title`} onChange={(e) => handleInputChange("title", e.target.value)} />
+                    <Input required={true} value={data.title} label={`Event title`} onChange={(e) => handleInputChange("title", e.target.value)} />
                     <Input type="textarea" required={false} value={data.description} label={`Description`} onChange={(e) => handleInputChange("description", e.target.value)} />
+                    <Input type="file" required={false} value={data.image} label={`Profile Image`} onChange={(e) => handleInputChange("image", e)} />
                 </Form>
             </div>
             <div>
@@ -43,7 +61,6 @@ function CreateEvent(props) {
                     <Input required={false} value={data.venue} label={`Venue name`} onChange={(e) => handleInputChange("venue", e.target.value)} />
                     <Input required={false} value={data.address} label={`Address`} onChange={(e) => handleInputChange("address", e.target.value)} />
                     <Input required={false} value={data.city} label={`City`} onChange={(e) => handleInputChange("city", e.target.value)} />
-                    <Input required={false} value={data.country} label={`Country`} onChange={(e) => handleInputChange("country", e.target.value)} />
                 </Form>
             </div>
             <div>
@@ -54,7 +71,7 @@ function CreateEvent(props) {
                 </Form>
             </div>
             <div>
-                <Form onSubmit={() => saveEvent()}>
+                <Form>
                     <Input required={false} value={data.url} label={`URL`} onChange={(e) => handleInputChange("url", e.target.value)} />
                     <Input required={false} value={data.instagram_url} label={`Instagram URL`} onChange={(e) => handleInputChange("instagram_url", e.target.value)} />
                     <Input required={false} value={data.facebook_url} label={`Facebook URL`} onChange={(e) => handleInputChange("facebook_url", e.target.value)} />

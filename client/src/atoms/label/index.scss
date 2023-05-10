@@ -1,13 +1,13 @@
 .Label {
     background-color: white;
-    font-size: 14px;
     position: absolute;
     padding: 3px;
 
     &--input,
     &--date,
     &--time,
-    &--number {
+    &--number,
+    &--file {
         bottom: 26px;
         left: 6px;
     }
@@ -20,5 +20,15 @@
     &--date,
     &--time {
         z-index: 9;
+    }
+
+    &__required {
+        color: #a50203;
+        font-weight: bolder;
+        margin-left: 3px;
+    }
+
+    &__text {
+        font-size: 14px;
     }
 }

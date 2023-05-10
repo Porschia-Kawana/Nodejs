@@ -1,24 +1,25 @@
 module.exports = (sequelize, DataTypes) => {
     let Event = sequelize.define('Event', {
+        id: {
+            type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true
+        },
         title: { type: DataTypes.STRING, allowNull: false },
-        decription: DataTypes.STRING,
+        description: DataTypes.STRING,
         address: DataTypes.STRING,
+        venue: DataTypes.STRING,
         city: DataTypes.STRING,
-        image: DataTypes.STRING,
         url: DataTypes.STRING,
         facebook_url: DataTypes.STRING,
         instagram_url: DataTypes.STRING,
         price: DataTypes.INTEGER,
-        date: DataTypes.DATE,
-        time: DataTypes.DATE,
+        datetime: DataTypes.DATE,
+        created_by: DataTypes.STRING,
+        image: DataTypes.STRING,
+    }, {
+        timestamps: false
     });
 
-    Event.associate = ({ Performer, User, PerformerEvents }) => {
-        Event.belongsToMany(Performer, {
-            as: "performers",
-            through: PerformerEvents,
-            foreignKey: "event_id",
-        });
+    Event.associate = ({ User }) => {
         Event.belongsTo(User, {
             foreignKey: "created_by",
         });

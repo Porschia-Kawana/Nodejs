@@ -39,7 +39,7 @@ function Profile() {
     return (
         <div className="Profile">
             {data && newAccount && <NewAccount data={data} openProfile={() => setNewAccount(false)} />}
-            {data && !newAccount && <Account data={data} />}
+            {data && !newAccount && <Account data={data} user={user} />}
         </div>
     );
 }

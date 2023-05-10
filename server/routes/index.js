@@ -1,6 +1,6 @@
 const userController = require('../controller').user;
 const eventController = require('../controller').event;
-const performerController = require('../controller').performer;
+const { parser } = require('../storage')
 
 module.exports = (app) => {
 
@@ -14,8 +14,7 @@ module.exports = (app) => {
     app.post("/api/user/create", userController.createUser);
     app.put(`/api/user/:userId`, userController.updateUser);
 
-    app.get('/api/events', eventController.getAllEvents);
-    app.post('/api/events', eventController.create);
-
-    app.get('/api/performers', performerController.getAllPerformers);
+    app.get('/api/event', eventController.getAllEvents);
+    app.get(`/api/event/:userId`, eventController.getAllUserEvents);
+    app.post('/api/event/create', parser.single("image"), eventController.createEvent);
 }

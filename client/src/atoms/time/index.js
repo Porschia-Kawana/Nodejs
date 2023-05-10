@@ -19,7 +19,6 @@ function TimeInput(props) {
 
     return (
         <div className="time">
-            {props.required && <span className="time__required">*</span>}
             <input type="time" className="time__input" value={value} placeholder={props.placeholder} required={props.required} onChange={(e) => handleChange(e.target.value)} />
             <span>{value || 'Select Time'}</span>
             <span className="time__icon">{clockIcon}</span>

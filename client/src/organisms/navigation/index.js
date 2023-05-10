@@ -7,7 +7,7 @@ import Button from '../../atoms/button'
 import "./index.scss";
 
 function Navigation() {
-    const [init, setInit] = useState(false)
+    const [init, setInit] = useState(true)
     const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
     useEffect(() => {
@@ -22,7 +22,8 @@ function Navigation() {
                                 username: user.nickname,
                                 email: user.email,
                                 first_name: user.given_name || "",
-                                last_name: user.family_name || ""
+                                last_name: user.family_name || "",
+                                phone: ""
                             }),
                             headers: {
                                 'Content-type': 'application/json; charset=UTF-8',

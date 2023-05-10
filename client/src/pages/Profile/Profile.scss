@@ -33,5 +33,11 @@
 }
 
 .NewAccount {
-    max-width: fit-content;
+    width: 90%;
+}
+
+@media screen and (min-width: 950px) {
+    .NewAccount {
+        width: 50%;
+    }
 }

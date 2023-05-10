@@ -14,7 +14,6 @@ function DateInput(props) {
 
     return (
         <div className="date">
-            {props.required && <span className="date__required">*</span>}
             <input type="date" className="date__input" value={value} placeholder={props.placeholder} required={props.required} onChange={(e) => handleChange(e.target.value)} />
             <span>{value || 'Select Date'}</span>
             <span className="date__icon">{calendarIcon}</span>

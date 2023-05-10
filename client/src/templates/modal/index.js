@@ -55,7 +55,7 @@ function Modal(props) {
                             {pageIdx !== (props.children.length - 1) ?
                                 <Button onClick={() => goToNextPage()} name="Continue" />
                                 :
-                                <Button name="Save" />
+                                <Button name="Save" onClick={props.onSave} />
                             }
                         </div>
                     }
